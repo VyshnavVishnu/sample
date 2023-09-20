@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Welcome</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="{% url 'Home' %}">Home</a></li>
+      <li class="active"><a href="{% url 'View' %}">View</a></li>
+      <li><a href="{% url 'Gallery' %}">Gallery</a></a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+<table class="table" cellspacing="10" cellpadding="10">
+    <thead>
+    <tr>
+        <th>User_ID</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Address</th>
+        <th>PhoneNo</th>
+        <th>Date</th>
+        <th colspan="2">Operations</th>
+        <th>Profile_Pic</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in users %}
+    <tr>
+        <th>{{i.Userid}}</th>
+        <th>{{i.Email}}</th>
+        <th>{{i.Password}}</th>
+        <th>{{i.Address}}</th>
+        <th>{{i.PhoneNo}}</th>
+        <th>{{i.Date}}</th>
+        <th><a href="{% url 'edit' i.Userid %}">Edit </a></th>
+        <th><a href="{% url 'delete_user' i.Userid %}">Delete </a></th>
+        <th><img src="{{i.Profile_Pic.url}}" alt="" width="50px" height="50px"></th>
+    </tr>
+    </tbody>
+    {% endfor %}
+</table>
+</div>
+</body>
+</html>
